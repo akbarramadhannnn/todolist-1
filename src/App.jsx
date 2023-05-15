@@ -8,12 +8,25 @@ const DetailActivity = lazy(() => import("@/views/DetailActivity"));
 const App = () => {
   return (
     <Layout>
-      <Suspense>
-        <Routes>
-          <Route index path="/" element={<Home />} />
-          <Route path="/detail-activity/:id" element={<DetailActivity />} />
-        </Routes>
-      </Suspense>
+      <Routes>
+        <Route
+          index
+          path="/"
+          element={
+            <Suspense>
+              <Home />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/detail-activity/:id"
+          element={
+            <Suspense>
+              <DetailActivity />
+            </Suspense>
+          }
+        />
+      </Routes>
     </Layout>
   );
 };
