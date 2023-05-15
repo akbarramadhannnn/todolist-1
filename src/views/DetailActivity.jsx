@@ -383,7 +383,7 @@ const Home = () => {
           />
 
           <Button
-            dataCy="activity-add-button"
+            dataCy="todo-add-button"
             iconName={"plus-white"}
             onClick={handleAddTodoList}
           >
