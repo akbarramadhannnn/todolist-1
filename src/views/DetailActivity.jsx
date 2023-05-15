@@ -446,6 +446,7 @@ const Home = () => {
       />
 
       <div data-cy="modal-add"></div>
+      <div data-cy="modal-information"></div>
       <div data-cy="modal-delete"></div>
     </Fragment>
   );
