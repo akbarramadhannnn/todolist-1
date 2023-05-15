@@ -180,7 +180,6 @@ const Home = () => {
             todo_items: stateTodo,
           }));
           handleCloseModal();
-          setValueSort("latest");
         }
       );
     } else {
@@ -188,7 +187,6 @@ const Home = () => {
         (response) => {
           setIsLoading(true);
           handleCloseModal();
-          setValueSort("latest");
         }
       );
     }
