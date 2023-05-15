@@ -1,16 +1,19 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "@/layout";
-import Home from "@/views/Home";
-import DetailActivity from "@/views/DetailActivity";
+
+const Home = lazy(() => import("@/views/Home"));
+const DetailActivity = lazy(() => import("@/views/DetailActivity"));
 
 const App = () => {
   return (
     <Layout>
-      <Routes>
-        <Route index path="/" element={<Home />} />
-        <Route path="/detail-activity/:id" element={<DetailActivity />} />
-      </Routes>
+      <Suspense>
+        <Routes>
+          <Route index path="/" element={<Home />} />
+          <Route path="/detail-activity/:id" element={<DetailActivity />} />
+        </Routes>
+      </Suspense>
     </Layout>
   );
 };

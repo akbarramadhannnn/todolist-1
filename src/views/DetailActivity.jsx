@@ -405,23 +405,6 @@ const Home = () => {
       {!isLoading && detailActivity?.todo_items.length > 0 ? (
         <ul>
           {listDataTodo}
-          {/* {detailActivity.todo_items.map((d, i) => {
-            const dataPriority = DataPriority.find(
-              (f) => f.value === d.priority
-            );
-            return (
-              <CardTodolist
-                key={i}
-                isActive={d.is_active}
-                title={d.title}
-                color={dataPriority.color}
-                lastIndex={detailActivity.todo_items.length - 1 === i}
-                onClickEdit={() => handleEditTodo(d)}
-                onClickDelete={() => handleDeleteTodo(d)}
-                onClickCheckList={() => handleCheklistTodo(d)}
-              />
-            );
-          })} */}
         </ul>
       ) : null}
 
