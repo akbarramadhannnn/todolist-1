@@ -246,17 +246,16 @@ const Home = () => {
   }, [todosId, handleCloseModalDialog, detailActivity.todo_items]);
 
   const handleCheklistTodo = useCallback(
-    (data) => {
+    async (data) => {
       const isActive = data.is_active === 1 ? 0 : 1;
-      ApiCheckListTodo(data.id, isActive, data.priority).then((response) => {
-        const state = [...detailActivity.todo_items];
-        const index = state.map((d) => d.id).indexOf(data.id);
-        state[index].is_active = isActive;
-        setDetailActivity((oldState) => ({
-          ...oldState,
-          todo_items: state,
-        }));
-      });
+      const state = [...detailActivity.todo_items];
+      const index = state.map((d) => d.id).indexOf(data.id);
+      state[index].is_active = isActive;
+      setDetailActivity((oldState) => ({
+        ...oldState,
+        todo_items: state,
+      }));
+      await ApiCheckListTodo(data.id, isActive, data.priority);
     },
     [detailActivity.todo_items]
   );
@@ -403,9 +402,7 @@ const Home = () => {
       ) : null}
 
       {!isLoading && detailActivity?.todo_items.length > 0 ? (
-        <ul>
-          {listDataTodo}
-        </ul>
+        <ul>{listDataTodo}</ul>
       ) : null}
 
       <ModalForm
