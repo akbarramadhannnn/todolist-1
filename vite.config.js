@@ -16,6 +16,29 @@ import { resolve } from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+
+  // build: {
+  //   outDir: "./dist",
+  //   rollupOptions: {
+  //     output: {
+  //       manualChunks: {
+  //         "react-venders": ["react", "react-router-dom", "react-dom"],
+  //       },
+  //     },
+  //   },
+  // },
+
+  // build: {
+  //   outDir: "./dist",
+  //   sourcemap: true,
+  //   rollupOptions: {
+  //     output: {
+  //       entryFileNames: '[name].js',
+  //       chunkFileNames: '[name].js',
+  //       assetFileNames: '[name].[ext]'
+  //     }
+  //    }
+  // },
   // build: {
   //   rollupOptions: {
   //     output: {
