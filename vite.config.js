@@ -1,10 +1,9 @@
 import { defineConfig, splitVendorChunkPlugin } from "vite";
 import react from "@vitejs/plugin-react";
-import alias from "@rollup/plugin-alias";
 import { resolve } from "path";
 // import { dependencies } from "./package.json";
 
-const projectRootDir = resolve(__dirname);
+// const projectRootDir = resolve(__dirname);
 
 // function renderChunks(deps) {
 //   let chunks = {};
@@ -17,28 +16,28 @@ const projectRootDir = resolve(__dirname);
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  build: {
-    rollupOptions: {
-      output: {
-        chunkFileNames: "assets/js/[name]-[hash].js",
-        entryFileNames: "assets/js/[name]-[hash].js",
+  // build: {
+  //   rollupOptions: {
+  //     output: {
+  //       chunkFileNames: "assets/js/[name]-[hash].js",
+  //       entryFileNames: "assets/js/[name]-[hash].js",
 
-        assetFileNames: ({ name }) => {
-          if (/\.(gif|jpe?g|png|svg)$/.test(name ?? "")) {
-            return "assets/images/[name]-[hash][extname]";
-          }
+  //       assetFileNames: ({ name }) => {
+  //         if (/\.(gif|jpe?g|png|svg)$/.test(name ?? "")) {
+  //           return "assets/images/[name]-[hash][extname]";
+  //         }
 
-          if (/\.css$/.test(name ?? "")) {
-            return "assets/css/[name]-[hash][extname]";
-          }
+  //         if (/\.css$/.test(name ?? "")) {
+  //           return "assets/css/[name]-[hash][extname]";
+  //         }
 
-          // default value
-          // ref: https://rollupjs.org/guide/en/#outputassetfilenames
-          return "assets/[name]-[hash][extname]";
-        },
-      },
-    },
-  },
+  //         // default value
+  //         // ref: https://rollupjs.org/guide/en/#outputassetfilenames
+  //         return "assets/[name]-[hash][extname]";
+  //       },
+  //     },
+  //   },
+  // },
   // build: {
   // rollupOptions: {
   //   input: {
