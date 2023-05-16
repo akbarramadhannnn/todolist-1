@@ -19,8 +19,8 @@ const ModalAlert = ({ open, desc, onClose }) => {
           boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
         }}
       >
-        <div className="mr-[13px]">
-          <Icon name="information-green" dataCy="modal-information-icon" />
+        <div data-cy="modal-information-icon" className="mr-[13px]">
+          <Icon name="information-green" />
         </div>
         <p
           data-cy="modal-information-title"

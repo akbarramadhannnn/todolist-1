@@ -33,9 +33,11 @@ const ListActivity = ({
           </p>
 
           <div className="relative">
-            <button onClick={onClickDelete}>
+            <button
+              data-cy="activity-item-delete-button"
+              onClick={onClickDelete}
+            >
               <Icon
-                dataCy="activity-item-delete-button"
                 name="trash-grey"
                 className="w-[14px] h-[14px] md:w-[16px] md:h-[16px] lg:w-full lg:h-full"
               />

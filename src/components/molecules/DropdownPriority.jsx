@@ -43,7 +43,7 @@ const Select = ({ label, value, onSelect = () => {} }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (!ref.current.contains(event.target)) {
+      if (ref.current?.contains && !ref.current.contains(event.target)) {
         setIsShowDropdown(false);
       }
     };
