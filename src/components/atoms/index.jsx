@@ -1,9 +1,11 @@
-import Heading from "./Heading";
-import Icon from "./Icon";
-import LoadingSpinner from "./LoadingSpinner";
-import Button from "./Button";
-import EmptyState from "./EmptyState";
-import Label from "./Label";
-import Checkbox from "./Checkbox";
+import { lazy } from "react";
+
+const Heading = lazy(() => import("./Heading"));
+const Icon = lazy(() => import("./Icon"));
+const LoadingSpinner = lazy(() => import("./LoadingSpinner"));
+const Button = lazy(() => import("./Button"));
+const EmptyState = lazy(() => import("./EmptyState"));
+const Label = lazy(() => import("./Label"));
+const Checkbox = lazy(() => import("./Checkbox"));
 
 export { Heading, Icon, LoadingSpinner, Button, EmptyState, Label, Checkbox };

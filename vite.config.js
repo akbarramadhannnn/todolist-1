@@ -18,25 +18,19 @@ function renderChunks(deps) {
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
+    sourcemap: false,
     rollupOptions: {
       output: {
+        manualChunks: {
+          vendor: ["react", "react-router-dom", "react-dom"],
+          ...renderChunks(dependencies),
+        },
         entryFileNames: `[name].js`,
         chunkFileNames: `[name].js`,
         assetFileNames: `[name].[ext]`,
-      }
-    }
+      },
+    },
   },
-  // build: {
-  //   sourcemap: false,
-  //   rollupOptions: {
-  //     output: {
-  //       manualChunks: {
-  //         vendor: ["react", "react-router-dom", "react-dom"],
-  //         ...renderChunks(dependencies),
-  //       },
-  //     },
-  //   },
-  // },
   plugins: [
     react(),
     splitVendorChunkPlugin(),
