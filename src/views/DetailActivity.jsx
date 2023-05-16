@@ -262,13 +262,16 @@ const Home = () => {
     }));
   }, []);
 
-  const handleEditTitle = useCallback(async () => {
+  const handleEditTitle = useCallback(() => {
     if (isEdit) {
-      setDetailActivity((oldState) => ({
-        ...oldState,
-        title: rdetailActivity.title,
-      }));
-      await ApiUpdateTitleActivityGroupById(params.id, detailActivity.title);
+      ApiUpdateTitleActivityGroupById(params.id, detailActivity.title).then(
+        (response) => {
+          setDetailActivity((oldState) => ({
+            ...oldState,
+            title: response.title,
+          }));
+        }
+      );
     }
     setIsEdit(!isEdit);
   }, [isEdit, params.id, detailActivity.title]);
