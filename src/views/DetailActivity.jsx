@@ -282,9 +282,7 @@ const Home = () => {
 
   const onBlur = useCallback(() => {
     inputRef.current.blur();
-    setTimeout(() => {
-      handleEditTitle();
-    }, 50);
+    handleEditTitle();
   }, [handleEditTitle]);
 
   const handleSortData = useCallback((value) => {
