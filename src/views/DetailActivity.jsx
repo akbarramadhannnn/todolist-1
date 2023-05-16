@@ -240,16 +240,17 @@ const Home = () => {
   }, [todosId, handleCloseModalDialog, detailActivity.todo_items]);
 
   const handleCheklistTodo = useCallback(
-    async (data) => {
+    (data) => {
       const isActive = data.is_active === 1 ? 0 : 1;
-      const state = [...detailActivity.todo_items];
-      const index = state.map((d) => d.id).indexOf(data.id);
-      state[index].is_active = isActive;
-      setDetailActivity((oldState) => ({
-        ...oldState,
-        todo_items: state,
-      }));
-      await ApiCheckListTodo(data.id, isActive, data.priority);
+      ApiCheckListTodo(data.id, isActive, data.priority).then((response) => {
+        const state = [...detailActivity.todo_items];
+        const index = state.map((d) => d.id).indexOf(data.id);
+        state[index].is_active = isActive;
+        setDetailActivity((oldState) => ({
+          ...oldState,
+          todo_items: state,
+        }));
+      });
     },
     [detailActivity.todo_items]
   );
@@ -324,47 +325,45 @@ const Home = () => {
   return (
     <Fragment>
       <div className="mb-[37px] lg:mb-[55px] flex justify-between">
-        {!isLoading ? (
-          <div className="flex items-center">
+        <div className="flex items-center">
+          <button
+            data-cy="todo-back-button"
+            className="hidden lg:block mr-[30px]"
+            onClick={handleBackBtn}
+          >
+            <Icon name="chevron-left-black" />
+          </button>
+
+          <div className="flex justify-between items-center w-full">
+            {isEdit ? (
+              <input
+                ref={inputRef}
+                className="w-full h-full border-b border-[#111] text-[#111] font-bold text-[16px] lg:text-[36px] outline-none"
+                value={detailActivity.title}
+                onChange={handleChangeEditTitle}
+                onBlur={onBlur}
+              />
+            ) : null}
+
+            {!isEdit ? (
+              <Heading type="2" dataCy="todo-title" onClick={handleEditTitle}>
+                {detailActivity?.title}
+              </Heading>
+            ) : null}
+
             <button
-              data-cy="todo-back-button"
-              className="hidden lg:block mr-[30px]"
-              onClick={handleBackBtn}
+              data-cy="todo-title-edit-button"
+              className="ml-[30px]"
+              onClick={() => {
+                if (inputRef.current === null) {
+                  handleEditTitle();
+                }
+              }}
             >
-              <Icon name="chevron-left-black" />
+              <Icon name="pencil-grey" />
             </button>
-
-            <div className="flex justify-between items-center w-full">
-              {isEdit ? (
-                <input
-                  ref={inputRef}
-                  className="w-full h-full border-b border-[#111] text-[#111] font-bold text-[16px] lg:text-[36px] outline-none"
-                  value={detailActivity.title}
-                  onChange={handleChangeEditTitle}
-                  onBlur={onBlur}
-                />
-              ) : (
-                <Heading type="2" dataCy="todo-title" onClick={handleEditTitle}>
-                  {detailActivity.title}
-                </Heading>
-              )}
-
-              <button
-                data-cy="todo-title-edit-button"
-                className="ml-[30px]"
-                onClick={() => {
-                  if (inputRef.current === null) {
-                    handleEditTitle();
-                  }
-                }}
-              >
-                <Icon name="pencil-grey" />
-              </button>
-            </div>
           </div>
-        ) : (
-          <div></div>
-        )}
+        </div>
 
         <div className="flex items-center justify-end">
           <DropdownSort
