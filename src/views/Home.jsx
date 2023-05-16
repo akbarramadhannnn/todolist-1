@@ -114,9 +114,7 @@ const Home = () => {
         </Button>
       </div>
 
-      {isLoading ? <LoadingSpinner /> : null}
-
-      {!isLoading && !listActivity.data.length > 0 ? (
+      {!listActivity?.data?.length > 0 ? (
         <EmptyState
           type={1}
           dataCy="activity-empty-state"
@@ -124,7 +122,7 @@ const Home = () => {
         />
       ) : null}
 
-      {!isLoading && listActivity.data.length > 0 ? (
+      {listActivity?.data?.length > 0 ? (
         <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {listActivity.data.map((d, i) => {
             return (

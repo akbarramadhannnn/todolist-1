@@ -9,7 +9,6 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import {
   Heading,
-  LoadingSpinner,
   Button,
   EmptyState,
   Icon,
@@ -387,9 +386,7 @@ const Home = () => {
         </div>
       </div>
 
-      {isLoading ? <LoadingSpinner /> : null}
-
-      {!isLoading && !detailActivity.todo_items.length > 0 ? (
+      {!detailActivity?.todo_items?.length > 0 ? (
         <EmptyState
           type={2}
           dataCy="todo-empty-state"
@@ -397,9 +394,7 @@ const Home = () => {
         />
       ) : null}
 
-      {!isLoading && detailActivity?.todo_items.length > 0 ? (
-        <ul>{listDataTodo}</ul>
-      ) : null}
+      {detailActivity?.todo_items?.length > 0 ? <ul>{listDataTodo}</ul> : null}
 
       <ModalForm
         open={modalForm.open}
