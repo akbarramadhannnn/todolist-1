@@ -75,9 +75,8 @@ const Select = ({ label, value, onSelect = () => {} }) => {
         onClick={handleShowDropdown}
       >
         {values ? (
-          <div className="flex items-center">
+          <div data-cy="modal-add-priority-item" className="flex items-center">
             <div
-              data-cy="modal-add-priority-item"
               className={`w-[14px] h-[14px] rounded-full mr-[9px]`}
               style={{
                 backgroundColor: values.color,
