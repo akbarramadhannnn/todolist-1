@@ -17,12 +17,45 @@ const projectRootDir = resolve(__dirname);
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        chunkFileNames: "assets/js/[name]-[hash].js",
+        entryFileNames: "assets/js/[name]-[hash].js",
+
+        assetFileNames: ({ name }) => {
+          if (/\.(gif|jpe?g|png|svg)$/.test(name ?? "")) {
+            return "assets/images/[name]-[hash][extname]";
+          }
+
+          if (/\.css$/.test(name ?? "")) {
+            return "assets/css/[name]-[hash][extname]";
+          }
+
+          // default value
+          // ref: https://rollupjs.org/guide/en/#outputassetfilenames
+          return "assets/[name]-[hash][extname]";
+        },
+      },
+    },
+  },
   // build: {
-  //   rollupOptions: {
-  //     input: {
-  //       app: "./src/main.jsx",
-  //     },
+  // rollupOptions: {
+  //   input: {
+  //     app: "./src/main.jsx",
   //   },
+  // },
+  // rollupOptions: {
+  //   input: {
+  //     main:  "./src/main.jsx",
+  //   },
+  //   output: {
+  //     inlineDynamicImports: false,
+  //     format: "es",
+  //     entryFileNames: "[name].min.js",
+  //     chunkFileNames: "[name]-[hash].min.js",
+  //   },
+  // },
   // },
   // base: 'https://cdn.jsdelivr.net/gh/tony19-sandbox/vite-react-single-js-file/dist/',
   // build: {
