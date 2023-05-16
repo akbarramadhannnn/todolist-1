@@ -75,13 +75,18 @@ export default defineConfig({
   plugins: [
     react(),
     splitVendorChunkPlugin(),
-    alias({
-      entries: [
-        {
-          find: "@",
-          replacement: resolve(projectRootDir, "src"),
-        },
-      ],
-    }),
+    // alias({
+    //   entries: [
+    //     {
+    //       find: "@",
+    //       replacement: resolve(projectRootDir, "src"),
+    //     },
+    //   ],
+    // }),
   ],
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "./src"),
+    },
+  },
 });

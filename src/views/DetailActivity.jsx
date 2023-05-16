@@ -7,12 +7,7 @@ import {
   useMemo,
 } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  Heading,
-  Button,
-  EmptyState,
-  Icon,
-} from "@/components/atoms";
+import { Heading, Button, EmptyState, Icon } from "@/components/atoms";
 import {
   ModalDialog,
   ModalForm,
@@ -50,7 +45,7 @@ const Home = () => {
       value: "",
     },
     priority: {
-      value: "very-high",
+      value: "",
     },
   });
   const [valueSort, setValueSort] = useState("latest");
@@ -81,7 +76,7 @@ const Home = () => {
   }, [params.id, isLoading]);
 
   useEffect(() => {
-    if (modalForm.itemName.value !== "" && modalForm.priority.value !== "") {
+    if (modalForm.itemName.value !== "") {
       setModalForm((oldState) => ({
         ...oldState,
         disabledButton: false,
@@ -92,7 +87,7 @@ const Home = () => {
         disabledButton: true,
       }));
     }
-  }, [modalForm.itemName.value, modalForm.priority.value]);
+  }, [modalForm.itemName.value]);
 
   const handleBackBtn = useCallback(() => {
     navigate(`/`);
@@ -120,7 +115,7 @@ const Home = () => {
       },
       priority: {
         ...oldState.priority,
-        value: "very-high",
+        value: "",
       },
     }));
     setTodosId("");
@@ -162,8 +157,10 @@ const Home = () => {
       disabledButton: true,
     }));
 
+    const prioritys = priority.value === "" ? "very-high" : priority.value;
+
     if (todosId !== "") {
-      ApiUpdateTodo(todosId, todosActive, itemName.value, priority.value).then(
+      ApiUpdateTodo(todosId, todosActive, itemName.value, prioritys).then(
         (response) => {
           const stateTodo = [...detailActivity.todo_items];
           const index = stateTodo.map((d) => d.id).indexOf(todosId);
@@ -182,7 +179,7 @@ const Home = () => {
         }
       );
     } else {
-      ApiCreateNewTodo(params.id, itemName.value, priority.value).then(
+      ApiCreateNewTodo(params.id, itemName.value, prioritys).then(
         (response) => {
           setIsLoading(true);
           handleCloseModal();
